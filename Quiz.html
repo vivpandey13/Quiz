@@ -15,7 +15,7 @@
 <body class="container">
 
     <div ng-app="myApp" ng-controller="quizCtrl" ng-init="getData()">
-        <form ng-submit="validate(form)" ng-if="!quizSubmitted">
+        <form ng-submit="validate()" ng-if="!quizSubmitted">
             <ul class="list-group list-group-flush">
 
                 <li ng-repeat="x in results" class="list-group-item">
@@ -24,14 +24,14 @@
 
                     <div ng-repeat="answer in x.answers">
                         <input type="radio" name="Q{{$parent.$index}}" id="Q{{$parent.$index}}A{{$index}}"
-                            value="{{answer}}" />
+                            value="{{answer}}" ng-model="ans[$parent.$index]"/>
                         <label for="Q{{$parent.$index}}A{{$index}}">{{answer}}</label>
                     </div>
                 </li>
             </ul>
             <input type="submit" value="Submit" class="btn-primary">
         </form>
-        <div ng-if="quizSubmitted">Quiz result</div>
+        <div ng-if="quizSubmitted">Quiz result: Total correct answers: {{correctAnswerCount}}</div>
     </div>
 
 

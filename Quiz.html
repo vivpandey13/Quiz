@@ -14,24 +14,27 @@
 
 <body class="container">
 
-    <div ng-app="myApp" ng-controller="quizCtrl">
+    <div ng-app="myApp" ng-controller="quizCtrl" ng-init="getData()">
+        <form ng-submit="validate(form)" ng-if="!quizSubmitted">
+            <ul class="list-group list-group-flush">
 
-        <ul class="list-group list-group-flush">
+                <li ng-repeat="x in results" class="list-group-item">
 
-            <li ng-repeat="x in results" class="list-group-item">
+                    <h3>{{x.question}}</h3>
 
-                <h3>{{x.question}}</h3>
-
-                <div ng-repeat="answer in x.answers">
-                    <input type="radio" name="Q{{$parent.$index}}" id="Q{{$parent.$index}}A{{$index}}"
-                        value="{{answer}}" />
-                    <label for="Q{{$parent.$index}}A{{$index}}">{{answer}}</label>
-                </div>
-            </li>
-        </ul>
-        <input type="submit" value="Submit" class="btn-primary">
-
+                    <div ng-repeat="answer in x.answers">
+                        <input type="radio" name="Q{{$parent.$index}}" id="Q{{$parent.$index}}A{{$index}}"
+                            value="{{answer}}" />
+                        <label for="Q{{$parent.$index}}A{{$index}}">{{answer}}</label>
+                    </div>
+                </li>
+            </ul>
+            <input type="submit" value="Submit" class="btn-primary">
+        </form>
+        <div ng-if="quizSubmitted">Quiz result</div>
     </div>
+
+
     <script src="Scripts\NGQuiz.js"></script>
 
 </body>

@@ -20,7 +20,7 @@ app.controller('quizCtrl', function ($scope, $http) {
     $scope.validate = function () {
         $scope.quizSubmitted = true;
         $scope.results.forEach(function(item, index){
-            if($scope.ans[index].includes(item.correct_answer)){
+            if($scope.ans[index]===item.correct_answer){
                 $scope.correctAnswerCount++;
             }
         });
